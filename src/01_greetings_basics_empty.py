@@ -12,6 +12,7 @@ Na inputu jméno, příjmení. Na výstupu jeden ze 3 možných pozdravů včetn
 ##############################################################
 ### Jak vymazat terminál před opětovným spuštěním - cls pro Win, clear pro Unix-like systémy
 
+# Základní import
 import os
 
 # Vymazání obrazovky terminálu (Windows)
