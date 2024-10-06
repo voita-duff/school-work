@@ -73,11 +73,11 @@ def calculate_angles(a, b, c):
 #typ trojuhelniku pdoel uhlu
 def classify_triangle_by_angles(A, B, C):
     if A == 90 or B == 90 or C == 90:
-        print("Trojúhelník je pravoúhlý.")
+        return "Trojúhelník je pravoúhlý."
     elif A > 90 or B > 90 or C > 90:
-        print("Trojúhelník je tupoúhlý.")
+        return "Trojúhelník je tupoúhlý."
     else:
-        print("Trojúhelník je ostroúhlý.")
+        return "Trojúhelník je ostroúhlý."
 
 def calculate_inradius(a, b, c, area):
     s = (a + b + c) / 2
@@ -86,7 +86,7 @@ def calculate_inradius(a, b, c, area):
 def calculate_circumradius(a, b, c, area):
     return (a * b * c) / (4 * area)
 
-#finalni funkce
+#finalni funkce...
 def main_menu():
     while True:
         print("Triangle Calculator")
@@ -98,7 +98,7 @@ def main_menu():
             a, b, c = check_user_input()
             if is_triangle(a, b, c):
                 area = math.sqrt((a + b + c) / 2 * ((a + b + c) / 2 - a) * ((a + b + c) / 2 - b) * ((a + b + c) / 2 - c))
-                triangle_type = classify_triangle(a, b, c)
+                triangle_type = classify_triangle(a, b, c), classify_triangle_by_angles(a, b, c)
                 angles = calculate_angles(a, b, c)
                 inradius = calculate_inradius(a, b, c, area)
                 circumradius = calculate_circumradius(a, b, c, area)
