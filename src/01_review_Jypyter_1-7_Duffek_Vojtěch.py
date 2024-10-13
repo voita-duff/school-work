@@ -260,7 +260,7 @@ except ValueError:
 my_tuple = (1, 2, 3)
 
 # b) Pokus o změnu prvku
-my_tuple.append("ahoj")
+my_tuple.append("Hi")
 
 
 ##############################################################
