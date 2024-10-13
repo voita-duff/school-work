@@ -89,7 +89,7 @@ else:
 
 # c) Spojení řetězců
 
-print("string1: %s, string2: %s ."%(string1,string2))
+print("Strings together:  %s%s ."%(string1,string2))
 
 
 ##############################################################
@@ -133,7 +133,7 @@ city = input("Enter what city ur from: ")
 dict = {name, age, city}
 
 # c) Výpis slovníku
-print(dict)
+print(f"Your name is: {dict[name]}, your age is: {dict[age]} and youre from: {dict[city]}.")
 
 
 ##############################################################
@@ -234,14 +234,21 @@ print(my_tuple[2])
     # b) zjistí index uživatelem zadaného prvku element_to_find v tuplu my_tuple pomocí metody index()
 
 # a) Vytvoření tuple a použití metody count()
-my_tuple = (1, 2, 3, 4, 5)
+my_tuple = (1, 2, 3, 2, 4, 2, 5)
 a = int(input("Enter your number: "))
 tuple_count = my_tuple.count(a)
 print(tuple_count)
 # b) Použití metody index()
 
-tuple_index = my_tuple.index(a)
-print(tuple_index)
+
+element_to_find = int(input("Enter a number u want to find in the tuple: "))
+
+try:
+    tuple_index = my_tuple.index(element_to_find)
+    print(f"{element_to_find} has index of: {tuple_index}.")
+except ValueError:
+    print(f"{element_to_find} is not in the tuple...")
+
 
 ##############################################################
 # 12. Úkol: Neměnnost tuple
