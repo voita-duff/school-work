@@ -122,7 +122,7 @@ for i in range(a + 1):
     # c) vypíše všechny klíče a hodnoty slovníku v cyklu
 
 # a) Vytvoření slovníku
-dict = {}
+my_dict = {}
 print("****slovnik****")
 # b) Načtení údajů od uživatele
 name = input("Enter your name: ")
@@ -130,10 +130,10 @@ age = input("Enter your age: ")
 city = input("Enter what city ur from: ")
 
 # Přidání údajů do slovníku
-dict = {name, age, city}
+my_dict = {name, age, city}
 
 # c) Výpis slovníku
-print(f"Your name is: {dict[name]}, your age is: {dict[age]} and youre from: {dict[city]}.")
+print(f"Your name is: {my_dict[name]}, your age is: {my_dict[age]} and youre from: {my_dict[city]}.")
 
 
 ##############################################################
