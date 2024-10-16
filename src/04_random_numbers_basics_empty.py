@@ -35,7 +35,7 @@ WRONG_ANSWERS = 0
 
 def generate_example():
     number1 = random.randint(1, 10)
-    number2 = random.randint(1, 10)
+    number2 = random.randint(1, 10) #generate numbers
     operation = random.choice(["+", "-", "*", "/"])
 
     if operation == "+":
@@ -56,7 +56,7 @@ def generate_example():
             print("Cannot divide by zero.")
     return result
 
-def check_correct_answers(result, user_answer):
+def check_correct_answers(result, user_answer): # check if input from user is the same as result
     global CORRECT_ANSWERS, WRONG_ANSWERS
     print(f"The result is {result}")
     if user_answer == result:
@@ -69,8 +69,10 @@ def check_correct_answers(result, user_answer):
         print(f"Wrong answers so far = {WRONG_ANSWERS}")
         return CORRECT_ANSWERS, WRONG_ANSWERS
 
-def example_generator_2numbers():
-    
+def example_generator_2numbers():  # final function
+    global CORRECT_ANSWERS, WRONG_ANSWERS
+    WRONG_ANSWERS = 0
+    CORRECT_ANSWERS = 0
     while True:
         print("Press q to generate example.")
         print("Press e to check your answer.")
@@ -95,11 +97,11 @@ def example_generator_2numbers():
 ### Generátor příkladů - n čísel a operace mezi nimi (+, -), přidána funkce statistika
 # funkce numbers_generator, example_generator_advance, user_statistics, celková fce example_generator_processor
 
-def numbers_generator(n):
+def numbers_generator(n): # generate numbers, n pozdeji definuji jako input od uzivatele
     return [random.randint(1, 10) for i in range(n)]
 
 
-def example_generator_advance(operation, n):
+def example_generator_advance(operation, n): # funkce na generovani prikladu
     numbers = numbers_generator(n)
     if operation == "+":
         result = sum(numbers)
@@ -113,7 +115,7 @@ def example_generator_advance(operation, n):
         print("Invalid operation, choose + or - .")
     return result
 
-def user_statistics(result, user_answer):
+def user_statistics(result, user_answer): # statistika na procenta
     global WRONG_ANSWERS, CORRECT_ANSWERS
     statistics = 100
     if user_answer == result:
@@ -130,7 +132,10 @@ def user_statistics(result, user_answer):
             
     return statistics
 
-def example_generator_processor():
+def example_generator_processor(): # finalni funkce
+    global WRONG_ANSWERS, CORRECT_ANSWERS
+    WRONG_ANSWERS = 0      # resetuji wrong a correct answers
+    CORRECT_ANSWERS = 0
     while True:
         print("Press q to generate example.")
         print("Press e to check your answer.")
