@@ -45,11 +45,11 @@ def ascii_table_with_range(start, end):
 def char_to_base(char, base):
     ascii_value = ord(char)
     if base == 'bin':
-        return bin(ascii_value)[2:]  # Remove '0b' prefix
+        return bin(ascii_value)[2:]  
     elif base == 'oct':
-        return oct(ascii_value)[2:]  # Remove '0o' prefix
+        return oct(ascii_value)[2:]  #odstranit prefixes
     elif base == 'hex':
-        return hex(ascii_value)[2:]  # Remove '0x' prefix
+        return hex(ascii_value)[2:]  
     else:
         return None  # Invalid base
 
