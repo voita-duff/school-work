@@ -17,6 +17,7 @@ GRADING= {
 }
 
 def parse_and_and_questions(author, filename):
+    global QUESTIONS_FILE
     questions = []
     try:
         with open(QUESTIONS_FILE, 'r', encoding='utf-8') as file:
