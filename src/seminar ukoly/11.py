@@ -37,6 +37,40 @@ import random
 # decimal_to_base, base_to_decimal
 # convert_number(number, from_base, to_base)
 
+def decimal_to_binary(number):
+    """binary_number = format(number, "b")
+    return binary_number"""
+    binary_number = ""
+    if number == 0:
+        result = str(0) + binary_number
+        return result
+    else:
+        while number > 0:
+            result = (str(number % 2) + binary_number)
+            number //= 2
+                      
+         
+
+def binary_to_decimal(binary_number):
+    """decimal_number = int(binary_number, 2)
+    return decimal_number"""
+
+def decimal_to_base(number, base_number):
+    """if base_number == 2:
+        binary_number = decimal_to_binary(number)
+        return binary_number
+    elif base_number == 4:
+        return oct(number)[2:]
+    elif base_number == 8:
+        return hex(number)[2:]
+    else: 
+        result = ""
+        while number > 0:
+            result = str(number % base_number) + result
+            number //= base_number
+        return result"""
+
+
 
 
 ##############################################################
@@ -50,3 +84,9 @@ import random
 
 if __name__ == "__main__":
     os.system("cls" if os.name == "nt" else "clear")
+    
+    
+    
+number = int(input("Enter number: "))
+result = decimal_to_binary(number)
+print(result)
