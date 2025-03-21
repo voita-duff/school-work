@@ -3,7 +3,7 @@ import os
 
 class Character:
     MAX_HEALTH = 100
-    MAX_MANA = 100
+    MAX_MANA = 100  #zacatecni hodnoty k dedeni dalsim tridam
     MAX_LEVEL = 10
     BASE_ATTACK = 1
     def __init__(self, name: str, health: int, mana: int, level: int):
@@ -12,6 +12,10 @@ class Character:
         self.mana = mana
         self.level = level
         self.inventory = Inventory()
+
+    def __str__(self): #vypis informaci
+        return f"{self.name}, HP: {self.health}, mana: {self.mana}, lvl: {self.level}"
+
     @property #property na zajisteni vstupu
     def health(self):
         return self._health
@@ -33,23 +37,26 @@ class Character:
         self._level = int(y)
     @mana.setter
     def mana(self, z):
-        if not 0<z<= self.MAX_MANA:
+        if not 0<=z<= self.MAX_MANA:
             raise ValueError("Hero has to have valid mana")
         self._mana = int(z)
 
-class Inventory:
+class Inventory: #inventar
     def __init__(self):
         self.items = []
     def __add__(self, other):
-        if isinstance(other, Inventory): # jen inventare mohou byt upraveny, ne jen charakteru
-            new_inventory = Inventory()
+        if isinstance(other, Inventory):
+            new_inventory = Inventory() #kombinovat jen inventare
             new_inventory.items = self.items + other.items
             return new_inventory
-        raise ValueError("Combine only inventorys")
-    def append(self, item):
-        self.items.append(item)
-
-
+        raise ValueError("Only combine players invs")
+    def append(self, item: str):
+        self.item = item
+        return self.items.append(item)
+    def __str__(self): #zapsani inventare v itemech
+        return ", ".join(self.items) if self.items else "empty inv"
+        
+    
 class Mage(Character):
     MAX_HEALTH = 80
     BASE_ATTACK = 3
@@ -72,7 +79,7 @@ class Mage(Character):
 class Warrior(Character):
     MAX_HEALTH = 125
     def __init__(self, name: str, health: int, mana: int, level: int):
-        super().__init__(name, health, mana, level)
+        super().__init__(name, health, mana=0, level=level)
         self.strenght = level * 3
     def attack(self):
         attack_damage = Character.BASE_ATTACK + self.strenght
@@ -82,7 +89,6 @@ class Warrior(Character):
             self.health = self.health - damage
         else: 
             raise ValueError("Youre dead")
-        
 
 
     
@@ -90,7 +96,7 @@ if __name__ == "__main__":
     os.system('clear' if os.name == 'posix' else 'cls')
 
     # Vytvoření postav
-    hero1 = Warrior("Brinda", 120, 30, 3)
+    hero1 = Warrior("Brinda", 120, 60, 3)
     hero2 = Mage("James", 80, 40, 6)
 
     # Základní operace
@@ -103,25 +109,19 @@ if __name__ == "__main__":
     print(f"{hero1.name} útočí a způsobuje {damage} poškození.")
     hero2.defend(damage)
     print(f"Po útoku má {hero2.name} {hero2.health} zdraví.")
+    damage = hero2.cast_spell()
+    print(f"{hero2.name} útočí a způsobuje {damage} poškození.")
+    hero1.defend(damage)
+    print(f"Po útoku má {hero1.name} {hero1.health} zdraví.")
     print ("-"*40)
-
+    hero1.inventory.append("Big Sword")
+    hero1.inventory.append("Brumble vest")
+    hero2.inventory.append("Void staff")
+    print(f"({hero1.name}) has these items in inv: {hero1.inventory}")
+    print(f"({hero2.name}) has these items in inv: {hero2.inventory}")
+    print ("-"*40)
     # Kombinace inventářů
-    hero1.inventory.append("Meč")
-    hero1.inventory.append("Kožená vesta")
-    hero2.inventory.append("Hůl")
-    print(f"Inventář {hero1.name}: {hero1.inventory}")
-    print(f"Inventář {hero2.name}: {hero2.inventory}")
+    combined_inventorys = hero1.inventory + hero2.inventory
+    print(f"Combined inventories: {combined_inventorys}")
     print ("-"*40)
-    
-    combined_inventory = hero1 + hero2
-    print(f"Kombinovaný inventář: {combined_inventory}")
-
-    print ("-"*40)
-    print(f"Inventář {hero1.name}: {hero1.inventory}")
-    print(f"Inventář {hero2.name}: {hero2.inventory}")
-    print ("-"*40)
-    hero1.inventory = hero1 + hero2
-    print (f"Do inventáře {hero1.name} byl přidán inventář {hero2.name}.")
-    print(f"Inventář {hero1.name}: {hero1.inventory}")
-    print(f"Inventář {hero2.name}: {hero2.inventory}")
-    print ("-"*40)
+   
